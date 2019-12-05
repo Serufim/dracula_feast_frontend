@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MainService} from './main.service';
+import {Role} from './roles.interface';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(readonly mainService: MainService) {
+  }
 
   ngOnInit() {
   }
 
+  showConfig() {
+    this.mainService.getRoles()
+      .subscribe((data: Role) => console.log(data));
+  }
 }
